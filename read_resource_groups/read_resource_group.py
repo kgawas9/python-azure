@@ -45,17 +45,17 @@ try:
             data_row.append([sub_id, display_name, state, authorization_source, resource_name, resource_location])
 
 
-        if data_row:
-            with open('subscription_details.csv', 'w', newline='') as csv_file:
-                csv_header = [
-                    'Subscription id', 'Subscription name', 'State', 'Authorization source', 'Resource name', 'Resource location' 
-                ]
+    if data_row:
+        with open('resource_groups.csv', 'w', newline='') as csv_file:
+            csv_header = [
+                'Subscription id', 'Subscription name', 'State', 'Authorization source', 'Resource name', 'Resource location' 
+            ]
 
-                writer = csv.writer(csv_file)
-                writer.writerow(csv_header)
-                writer.writerows(data_row)
+            writer = csv.writer(csv_file)
+            writer.writerow(csv_header)
+            writer.writerows(data_row)
 
-            print('Data successfully processed.')
+        print('Data successfully processed.')
 
 except:
     print('Error occured.')

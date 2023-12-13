@@ -1,0 +1,4 @@
+Subscription id,Subscription name,State,Authorization source,Resource name,Resource location
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,cloud-shell-storage-centralindia,centralindia
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,Learning,eastus
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,NetworkWatcherRG,eastus
