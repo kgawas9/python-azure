@@ -1,0 +1,10 @@
+Subscription id,Subscription name,State,Authorization source,Resource group name,Resource group location,Resource name,Resource type,Resource tags
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,cloud-shell-storage-centralindia,centralindia,csg10032002c318a48b,storageAccounts,ms-resource-usage:azure-cloud-shell
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,Learning,eastus,virtualmachine0112,virtualMachines,ms-resource-usage:azure-cloud-shell
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,Learning,eastus,virtualmachine0112_OsDisk_1_a5dae16f43f84ab19f360d8ef95f48ea,disks,ms-resource-usage:azure-cloud-shell
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,Learning,eastus,virtualmachine011252,networkInterfaces,ms-resource-usage:azure-cloud-shell
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,Learning,eastus,kglearning,vaults,"Owner:KG Techs, Department:IT"
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,Learning,eastus,virtualmachine0112-ip,publicIPAddresses,"Owner:KG Techs, Department:IT"
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,Learning,eastus,virtualmachine0112-nsg,networkSecurityGroups,"Owner:KG Techs, Department:IT"
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,Learning,eastus,virtualmachine0112-vnet,virtualNetworks,"Owner:KG Techs, Department:IT"
+fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,NetworkWatcherRG,eastus,NetworkWatcher_eastus,networkWatchers,"Owner:KG Techs, Department:IT"

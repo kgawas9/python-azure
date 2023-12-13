@@ -1,15 +1,16 @@
 from azure.identity import ClientSecretCredential
 from azure.mgmt.subscription import SubscriptionClient
 from azure.mgmt.resource import ResourceManagementClient
+from azure.mgmt.compute import ComputeManagementClient
 
 from decouple import config
 
 import csv
+from datetime import datetime
 
 tenant_id = config('tenant_id')
 client_id = config('client_id')
 client_secret = config('client_secret')
-
 
 try:
     credentials = ClientSecretCredential(tenant_id=tenant_id,
@@ -35,6 +36,10 @@ try:
             credential=credentials, subscription_id=sub_id
         )
 
+        compute_client = ComputeManagementClient(
+            credential=credentials, subscription_id=sub_id
+        )
+
         resource_groups = resource_client.resource_groups.list()
 
         # resource details
@@ -42,31 +47,22 @@ try:
             resource_group_name = resource_group.name
             resource_group_location = resource_group.location
 
-            resources = resource_client.resources.list_by_resource_group(resource_group_name=resource_group_name)
+            virtual_machines = compute_client.virtual_machines.list(resource_group_name=resource_group_name)
 
-            for resource in resources:
-                # print(f'{resource}/n')
-                resource_name = resource.name
-                resource_type = resource.type.split('/')[-1]
-                try:
-                    resource_tag_keys = resource.tags.keys()
-                    resource_tags = {}
-                    for key in resource_tag_keys:
-                        resource_tags[key] = resource.tags.get(key)
+            for virtual_machine in virtual_machines:
+                vm_name = virtual_machine.name
+                # vm_storage_profile = virtual_machine.storage_profile
+                vm_id = virtual_machine.vm_id
+                vm_created = datetime.strftime(virtual_machine.time_created, '%d-%b-%Y %H:%M:%S')
 
-                    resource_tags = ', '.join(f'{key}:{value}' for key, value in resource_tags.items())
-                except:
-                    print('No tags found')
-                
-
-                data_row.append([sub_id, display_name, state, authorization_source, resource_group_name, resource_group_location, resource_name, resource_type, resource_tags])
+                data_row.append([sub_id, display_name, state, authorization_source, resource_group_name, resource_group_location, vm_id, vm_name, vm_created])
 
 
     if data_row:
-        with open('resource_details.csv', 'w', newline='') as csv_file:
+        with open('vm_details.csv', 'w', newline='') as csv_file:
             csv_header = [
                 'Subscription id', 'Subscription name', 'State', 'Authorization source', 'Resource group name', 'Resource group location', 
-                'Resource name', 'Resource type', 'Resource tags'
+                'VM id', 'VM name', 'VM created on'
             ]
 
             writer = csv.writer(csv_file)
