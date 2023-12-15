@@ -2,3 +2,6 @@
 env
 .env
 subscription_details.csv
+resource_details.csv
+vm_details.csv
+resource_groups.csv
