@@ -1,8 +1,10 @@
 from azure.identity import ClientSecretCredential
 from azure.mgmt.subscription import SubscriptionClient
 from azure.mgmt.resource import ResourceManagementClient
+from azure.storage.blob import BlobServiceClient
 
 from decouple import config
+from pathlib import Path
 
 import csv
 
@@ -10,6 +12,9 @@ tenant_id = config('tenant_id')
 client_id = config('client_id')
 client_secret = config('client_secret')
 
+account_name = config('account_name')
+account_key = config('account_key')
+container_name = config('container_name')
 
 try:
     credentials = ClientSecretCredential(tenant_id=tenant_id,
@@ -74,7 +79,35 @@ try:
             writer.writerow(csv_header)
             writer.writerows(data_row)
 
-        print('Data successfully processed.')
+        
+
+
+    # upload file to storage account
+    local_file_path = Path.cwd().joinpath('resource_details.csv')
+    
+    blob_service_client = BlobServiceClient(account_url=f'https://{account_name}.blob.core.windows.net', credential=account_key)
+
+    blob_client = blob_service_client.get_blob_client(container=container_name, blob=local_file_path)
+
+    with open(local_file_path, 'rb') as data:
+        blob_client.upload_blob(data)
+
+    print('Data successfully processed.')
+
+    # Read blob file in memory
+
+    blob_name = 'resource_details.csv'
+    downloaded_blob = blob_client.download_blob()
+    content = downloaded_blob.readall()
+    decoded_content = content.decode('utf-8')
+
+    print(decoded_content)
+
+    with open('from_storage.csv', 'wb') as file:
+        downloaded_stream = blob_client.download_blob()
+        file.write(downloaded_stream.readall())
+
+    print(f'\nFile successfully saved in {Path.cwd()} directory.')
 
 except Exception as e:
     print('Error occured.', e)
