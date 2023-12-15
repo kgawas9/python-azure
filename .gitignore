@@ -5,3 +5,4 @@ subscription_details.csv
 resource_details.csv
 vm_details.csv
 resource_groups.csv
+from_storage.csv
