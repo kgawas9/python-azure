@@ -1,2 +1,0 @@
-Subscription id,Subscription name,State,Authorization source,Resource group name,Resource group location,VM id,VM name,VM created on
-fc65c5ce-8eb4-4e37-bff4-901ef4a75f2d,kg pay-as-you-go,Enabled,RoleBased,Learning,eastus,aa5947c4-dec5-4266-81b0-7b10c6fe9a99,virtualmachine0112,13-Dec-2023 20:17:57
